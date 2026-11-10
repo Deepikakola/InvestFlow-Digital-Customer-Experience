@@ -1,0 +1,207 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>InvestFlow  -  Portfolio UX Prototype</title><style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17253e;background:#edf2f8}*{box-sizing:border-box}body{margin:0}.shell{max-width:1210px;margin:32px auto;display:grid;grid-template-columns:235px 1fr;min-height:740px;background:white;border-radius:22px;overflow:hidden;box-shadow:0 18px 60px #19273a1c}aside{background:#11233c;color:#e8f0fc;padding:28px 18px;display:flex;flex-direction:column;gap:7px}.brand{font-size:24px;font-weight:850;letter-spacing:-1.2px;margin:6px 12px 32px}.brand span{color:#4cd4b1}.nav{display:block;width:100%;text-align:left;border:0;background:transparent;color:#c8d5e5;padding:14px 16px;border-radius:11px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}.nav.active,.nav:hover{background:#25425c;color:white}.foot{margin-top:auto;font-size:12px;color:#bacbdc;padding:12px;line-height:1.6}.content{padding:28px 34px;min-width:0}.top{display:flex;justify-content:space-between;gap:15px;align-items:center;border-bottom:1px solid #e5ebf1;padding-bottom:19px}.eyebrow{color:#485c76;text-transform:uppercase;font-weight:750;font-size:10px;letter-spacing:1.5px}.top h1{margin:4px 0 0;font-size:26px;letter-spacing:-.7px}.tag{background:#fff2d9;color:#845a0e;padding:9px 12px;border-radius:20px;font-size:12px;font-weight:800}.section{display:none;padding-top:25px}.section.active{display:block}.hero{background:linear-gradient(125deg,#143d53,#185b70);color:white;border-radius:20px;padding:28px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px}.hero .value{font-size:38px;font-weight:800;letter-spacing:-1px;margin:8px 0}.muted-light{color:#c0dce4;font-size:13px}.row{display:flex;gap:15px;flex-wrap:wrap}.metrics{margin:20px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{border:1px solid #e5ebf1;border-radius:17px;padding:21px;background:#fff;min-width:0}.card h3{margin:0 0 10px;font-size:16px}.k{color:#4b5e78;font-size:12px}.v{font-size:22px;font-weight:800;margin:8px 0}.good{color:#12664e}.chart{width:100%;height:175px}.seg{display:flex;gap:5px;background:#edf4f8;border-radius:10px;padding:4px;width:max-content;margin:0 0 16px}.seg button{border:0;background:transparent;padding:7px 13px;border-radius:8px;cursor:pointer;color:#4c6078}.seg button.on{background:#fff;color:#152b45;box-shadow:0 1px 5px #25384f24}.list{margin-top:19px}.line{display:grid;grid-template-columns:1.4fr .9fr .9fr;gap:12px;align-items:center;padding:16px 6px;border-bottom:1px solid #eff2f6;font-size:14px}.line strong{display:block}.line small{display:block;color:#4b5d75;margin-top:5px}.line span:last-child{text-align:right}.button{border:0;border-radius:12px;background:#126c78;color:#fff;padding:12px 17px;font-weight:700;cursor:pointer}.button.secondary{background:#eaf4f5;color:#126c78}.entry{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8eff4;padding:14px 0;gap:10px}.entry p{margin:4px 0;color:#495d74;font-size:13px}.search-label{display:block;font-weight:700;margin:0 0 8px}.input{padding:13px;border:1px solid #667b93;border-radius:10px;width:100%;font:inherit;max-width:430px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:660px}.formgrid label{font-size:13px;color:#495d74;display:block;margin:0 0 8px}.formgrid input,.formgrid select{width:100%;padding:13px;border-radius:10px;border:1px solid #667b93;font-size:15px}.notice{background:#fff8e7;color:#74561a;border-radius:12px;padding:13px 15px;margin:20px 0;font-size:13px;line-height:1.55}.success{background:#e9f8f3;color:#176448;border-radius:12px;padding:16px;margin-top:16px}.subtle{font-size:13px;color:#495d74;line-height:1.6}.flex{display:flex;align-items:center;justify-content:space-between;gap:12px}.graph-label{fill:#b0d4dc;font:12px system-ui}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:800px){.shell{margin:0;border-radius:0;grid-template-columns:1fr}.shell aside{flex-direction:row;overflow:auto;padding:12px;align-items:center;gap:4px}.brand{font-size:18px;margin:0 12px 0 2px}.nav{white-space:nowrap;padding:10px}.foot{display:none}.content{padding:20px}.metrics{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}}
+
+.skip{position:absolute;top:8px;left:12px;z-index:5;background:#fff;color:#11233c;padding:12px;transform:translateY(-180%)}
+.skip:focus{transform:none}
+:where(button,a,input,select,summary,h1[tabindex]):focus-visible{outline:3px solid #124477;outline-offset:3px;box-shadow:0 0 0 2px #fff}
+.nav:focus-visible{outline-color:#9ae8ef;box-shadow:none}
+nav{display:grid;gap:7px}
+.button[aria-pressed=true]{background:#126c78;color:#fff}
+.card h2{margin:0 0 10px;font-size:16px}
+.seg button{min-width:44px;min-height:44px}
+#periodTrend{width:100%;max-height:150px;margin:8px 0;display:block}
+#periodTrend .guide{stroke:#76869b;stroke-width:1;stroke-dasharray:4 4}
+#periodTrend .trend{fill:none;stroke:#12664e;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+#trendData{border-collapse:collapse;margin-top:8px}
+#trendData td,#trendData th{text-align:left;padding:5px 12px;border-bottom:1px solid #cbd8e3}
+#trendDetails summary{cursor:pointer;width:fit-content;padding:8px 0}
+input[aria-invalid=true]{border:2px solid #912e22}
+@media(max-width:800px){
+ .shell aside{display:block;overflow:visible}
+ .brand{margin:2px 2px 10px}
+ nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ .nav{min-height:44px;text-align:center;white-space:normal;padding:7px}
+ .top{align-items:flex-start}
+ .entry{flex-wrap:wrap}
+ .line{gap:7px;grid-template-columns:1.35fr .7fr 1fr}
+}
+@media(max-width:370px){
+ .content{padding:16px}
+ .top h1{font-size:22px}
+ .card{padding:15px}
+ .line{grid-template-columns:1fr auto}
+ .line span:last-child{grid-column:2}
+}
+</style></head><body><a class="skip" href="#pageTitle">Skip to main content</a><div class="shell"><aside><div class="brand">invest<span>flow.</span></div><nav aria-label="Primary navigation"><button class="nav active" data-tab="overview" aria-current="page">Overview</button><button class="nav" data-tab="portfolio">Portfolio</button><button class="nav" data-tab="watchlist">Watchlist</button><button class="nav" data-tab="research">Research</button><button class="nav" data-tab="order">Order review</button></nav><div class="foot">INDEPENDENT PORTFOLIO PROTOTYPE<br>All prices, holdings, and accounts are fictional. No real trades.</div></aside><main class="content"><div class="top"><div><div class="eyebrow">Digital customer experience concept</div><h1 id="pageTitle" tabindex="-1">Your financial picture</h1></div><div class="tag">DEMO ONLY</div></div>
+<section class="section active" id="overview"><div class="hero"><div><div class="muted-light">Total simulated account value</div><div class="value">$48,260.50</div><p class="muted-light" id="asOf">Demo snapshot as of <time datetime="2026-11-07">November 7, 2026</time></p><div>+$1,284.20 <span class="muted-light">(+2.73%) this month</span></div></div><div><svg class="chart" viewBox="0 0 380 175" role="img" aria-label="Illustrative portfolio balance rising over one month"><defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#41dabc" stop-opacity=".32"/><stop offset="1" stop-color="#41dabc" stop-opacity="0"/></linearGradient></defs><path d="M4 154 L42 143 L74 152 L108 118 L142 126 L176 90 L213 98 L252 58 L283 70 L321 32 L374 17 L374 175 L4 175Z" fill="url(#a)"/><path d="M4 154 L42 143 L74 152 L108 118 L142 126 L176 90 L213 98 L252 58 L283 70 L321 32 L374 17" fill="none" stroke="#55e2c4" stroke-width="4" stroke-linecap="round"/></svg></div></div><div class="metrics"><div class="card"><div class="k">Cash available (demo)</div><div class="v">$4,200.00</div><div class="subtle">Not connected to any account</div></div><div class="card"><div class="k">Invested assets</div><div class="v">$44,060.50</div><div class="subtle">Simulated holdings</div></div><div class="card"><div class="k">Saved securities</div><div class="v" id="savedCount">2</div><div class="subtle">Manage your research list</div></div></div><div class="card"><div class="flex"><h2>Your next step</h2><span class="eyebrow">Clarity first</span></div><p class="subtle">See how each holding contributes to your portfolio. Explore investments without executing a transaction.</p><button class="button" data-jump="portfolio">Explore portfolio →</button></div></section>
+<section class="section" id="portfolio"><h2>Portfolio performance, made understandable</h2><p class="subtle">Illustrative totals include cash. Returns below are fictional and not investment advice.</p><div class="seg" role="group" aria-label="Performance timeframe"><button data-period="1M" class="on" aria-pressed="true">1M</button><button data-period="6M" aria-pressed="false">6M</button><button data-period="1Y" aria-pressed="false">1Y</button></div><div class="card"><div class="k" id="periodLabel">Illustrative return over 1 month</div><div class="v good" id="periodValue">+$1,284.20 (+2.73%)</div><svg id="periodTrend" viewBox="0 0 400 126" role="img" aria-labelledby="trendTitle trendDescription"><title id="trendTitle">Illustrative 1 month return trend</title><desc id="trendDescription">Values are available below the chart.</desc><line id="trendZero" class="guide" x1="12" x2="388"/><polyline class="trend" id="trendLine"/></svg>
+<p id="trendSummary" class="subtle"></p>
+<details id="trendDetails"><summary>View demo trend data</summary><table id="trendData"><thead><tr><th scope="col">Sample</th><th scope="col">Illustrative return</th></tr></thead><tbody></tbody></table></details>
+<p class="subtle">Changes in account value are not the same as investment returns when money is deposited or withdrawn.</p></div><div class="card list"><h3>Simulated holdings</h3><div class="line"><div><strong>ALFA</strong><small>Alpha Technologies • Demo security</small></div><span>12 shares</span><span>$2,140.20</span></div><div class="line"><div><strong>BRVO</strong><small>Bravo Index Fund • Demo security</small></div><span>45 shares</span><span>$9,200.00</span></div><div class="line"><div><strong>CRWN</strong><small>Crown Diversified • Demo security</small></div><span>80 shares</span><span>$32,720.30</span></div></div></section>
+<section class="section" id="watchlist"><h2>Track opportunities without the clutter</h2><p class="subtle">Save a fictional security to your list. Saved items stay only in this page session.</p><div id="savedList"></div><button class="button secondary" data-jump="research">Discover demo securities →</button></section>
+<section class="section" id="research"><h2>Explore at your own pace</h2><p class="subtle">Search the mock catalog to explore how research and watchlists might connect.</p><label for="search" class="search-label">Search securities</label><input class="input" id="search" placeholder="Search by name or ticker" autocomplete="off"/><p id="researchStatus" class="sr" role="status"></p><div id="researchResults" class="list"></div></section>
+<section class="section" id="order"><h2>Review before you decide</h2><p class="subtle">This is a usability prototype. It never places a real investment order.</p><div class="formgrid"><div><label for="ticker">Demo security</label><select id="ticker"><option value="ALFA">ALFA  -  Alpha Technologies</option><option value="BRVO">BRVO  -  Bravo Index Fund</option><option value="CRWN">CRWN  -  Crown Diversified</option></select></div><div><label for="quantity">Quantity</label><input id="quantity" type="number" min="1" max="100" step="1" inputmode="numeric" value="2" aria-describedby="quantityHelp"/><p id="quantityHelp" class="subtle">Enter 1 to 100 whole shares.</p></div></div><div class="card" style="max-width:660px;margin-top:22px"><h3>Review summary</h3><div class="entry"><span>Estimated demo price / share</span><strong id="price">$125.00</strong></div><div class="entry"><span>Estimated demo order value</span><strong id="total">$250.00</strong></div><div class="entry"><span>Available demo buying power</span><strong>$4,200.00</strong></div><p class="subtle">Market prices can change. This prototype uses fictional static prices and no real quotes.</p></div><div class="notice"><strong>Simulation disclosure:</strong> This is not a brokerage account. No funds move, no positions change, and no live order is submitted.</div><button class="button" id="simulate">Confirm demo order review</button><div id="orderMessage" role="status"></div></section>
+</main></div><script>
+
+const byId = id => document.getElementById(id);
+const titles = {
+  overview: 'Your financial picture',
+  portfolio: 'Understand your portfolio',
+  watchlist: 'Your watchlist',
+  research: 'Explore investments',
+  order: 'Review a simulated order'
+};
+const catalog = [
+  ['ALFA', 'Alpha Technologies', 12500],
+  ['BRVO', 'Bravo Index Fund', 20444],
+  ['CRWN', 'Crown Diversified', 40899],
+  ['DLTA', 'Delta Growth', 6510],
+  ['ECHO', 'Echo Healthcare', 9050]
+];
+const saved = new Set(['ALFA', 'BRVO']);
+const buyingPower = 420000;
+const formatMoney = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
+const money = cents => formatMoney.format(cents / 100);
+const percent = number => number.toFixed(2) + '%';
+
+function show(view) {
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.toggle('active', section.id === view);
+  });
+  document.querySelectorAll('.nav').forEach(button => {
+    const active = button.dataset.tab === view;
+    button.classList.toggle('active', active);
+    if (active) button.setAttribute('aria-current', 'page');
+    else button.removeAttribute('aria-current');
+  });
+  const title = byId('pageTitle');
+  title.textContent = titles[view];
+  title.focus({preventScroll: true});
+  window.scrollTo(0, 0);
+}
+
+document.querySelectorAll('[data-tab],[data-jump]').forEach(button => {
+  button.addEventListener('click', () => show(button.dataset.tab || button.dataset.jump));
+});
+
+function renderWatchlist() {
+  byId('savedCount').textContent = saved.size;
+  byId('savedList').innerHTML = saved.size
+    ? catalog.filter(([ticker]) => saved.has(ticker)).map(([ticker, name]) =>
+      `<div class="entry"><div><strong>${ticker} - ${name}</strong><p>Demo security</p></div><button class="button secondary" aria-label="Remove ${ticker}" data-remove="${ticker}">Remove</button></div>`
+    ).join('')
+    : '<p class="notice">Your watchlist is empty. Search and save a demo security to get started.</p>';
+}
+
+function drawResults() {
+  const query = byId('search').value.toLowerCase().trim();
+  const found = catalog.filter(([ticker, name]) => (ticker + ' ' + name).toLowerCase().includes(query));
+  byId('researchResults').innerHTML = found.map(([ticker, name]) =>
+    `<div class="entry"><div><strong>${ticker} - ${name}</strong><p>Illustrative catalog. No live quote.<span class="saved-note">${saved.has(ticker) ? ' Saved.' : ''}</span></p></div><button class="button secondary" aria-label="Save to watchlist: ${ticker}" aria-pressed="${saved.has(ticker)}" data-add="${ticker}">Save to watchlist</button></div>`
+  ).join('') || '<p class="subtle">No matching demo securities. Try a different term.</p>';
+  byId('researchStatus').textContent = found.length === 1 ? '1 matching security' : found.length + ' matching securities';
+}
+
+byId('search').addEventListener('input', drawResults);
+byId('researchResults').addEventListener('click', event => {
+  const button = event.target.closest('[data-add]');
+  if (!button || saved.has(button.dataset.add)) return;
+  saved.add(button.dataset.add);
+  renderWatchlist();
+  button.closest('.entry').querySelector('.saved-note').textContent = ' Saved.';
+  button.setAttribute('aria-pressed', 'true');
+  byId('researchStatus').textContent = button.dataset.add + ' saved to watchlist.';
+});
+byId('savedList').addEventListener('click', event => {
+  const button = event.target.closest('[data-remove]');
+  if (!button) return;
+  const index = [...byId('savedList').querySelectorAll('[data-remove]')].indexOf(button);
+  saved.delete(button.dataset.remove);
+  renderWatchlist();
+  drawResults();
+  const remaining = byId('savedList').querySelectorAll('[data-remove]');
+  const next = remaining[Math.min(index, remaining.length - 1)] || document.querySelector('#watchlist [data-jump]');
+  next.focus();
+});
+
+const periods = {
+  '1M': {label:'1 month', amount:128420, values:[0, .38, .31, 1.22, 1.14, 1.95, 2.29, 2.73]},
+  '6M': {label:'6 months', amount:251435, values:[0, -.62, 1.2, .85, 2.6, 2.34, 4.2, 5.49]},
+  '1Y': {label:'1 year', amount:312640, values:[0, 1.33, 1.7, .42, 2.62, 4.1, 3.73, 6.93]}
+};
+
+function showPeriod(period) {
+  const {label, amount, values} = periods[period];
+  const end = values.at(-1);
+  document.querySelectorAll('[data-period]').forEach(button => {
+    const selected = button.dataset.period === period;
+    button.classList.toggle('on', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  byId('periodLabel').textContent = 'Illustrative return over ' + label;
+  byId('periodValue').textContent = '+' + money(amount) + ' (+' + percent(end) + ')';
+  byId('trendTitle').textContent = 'Illustrative ' + label + ' return trend';
+  byId('trendSummary').textContent = 'Demo trend starts at 0.00% and ends at ' + percent(end) + '. Samples are illustrative.';
+  byId('trendDescription').textContent = byId('trendSummary').textContent + ' The data table lists all eight samples.';
+  const y = value => 106 - (value + 1) * 11;
+  byId('trendLine').setAttribute('points', values.map((value, i) => (12 + i * (376 / 7)).toFixed(1) + ',' + y(value).toFixed(1)).join(' '));
+  byId('trendZero').setAttribute('y1', y(0));
+  byId('trendZero').setAttribute('y2', y(0));
+  document.querySelector('#trendData tbody').innerHTML = values.map((value, i) =>
+    `<tr><th scope="row">${i + 1}</th><td>${percent(value)}</td></tr>`
+  ).join('');
+}
+
+document.querySelectorAll('[data-period]').forEach(button => {
+  button.addEventListener('click', () => showPeriod(button.dataset.period));
+});
+
+const quantity = byId('quantity');
+const ticker = byId('ticker');
+const message = byId('orderMessage');
+const orderPrice = () => catalog.find(([symbol]) => symbol === ticker.value)[2];
+const quantityIsValid = n => Number.isInteger(n) && n >= 1 && n <= 100;
+
+function updateOrder() {
+  const n = quantity.valueAsNumber;
+  const price = orderPrice();
+  byId('price').textContent = money(price);
+  byId('total').textContent = quantityIsValid(n) ? money(price * n) : 'Enter a valid quantity';
+  message.replaceChildren();
+  quantity.removeAttribute('aria-invalid');
+  quantity.setAttribute('aria-describedby', 'quantityHelp');
+}
+
+function showOrderResult(text, style) {
+  const result = document.createElement('p');
+  result.className = style;
+  result.textContent = text;
+  message.replaceChildren(result);
+}
+
+ticker.addEventListener('change', updateOrder);
+quantity.addEventListener('input', updateOrder);
+byId('simulate').addEventListener('click', () => {
+  const n = quantity.valueAsNumber;
+  if (!quantityIsValid(n)) {
+    quantity.setAttribute('aria-invalid', 'true');
+    quantity.setAttribute('aria-describedby', 'quantityHelp orderMessage');
+    showOrderResult('Enter a whole quantity between 1 and 100.', 'notice');
+    return;
+  }
+  const total = orderPrice() * n;
+  if (total > buyingPower) {
+    quantity.setAttribute('aria-invalid', 'true');
+    quantity.setAttribute('aria-describedby', 'quantityHelp orderMessage');
+    showOrderResult('This simulated order exceeds demo buying power. Reduce the quantity and review again.', 'notice');
+    return;
+  }
+  const shares = n === 1 ? ' share' : ' shares';
+  showOrderResult('Demo review complete. No real order was placed. You reviewed ' + n + shares + ' of ' + ticker.value + ' with a simulated total of ' + money(total) + '.', 'success');
+});
+
+renderWatchlist();
+drawResults();
+showPeriod('1M');
+updateOrder();
+</script></body></html>

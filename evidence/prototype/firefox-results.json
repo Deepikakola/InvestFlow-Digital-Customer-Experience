@@ -1,0 +1,231 @@
+{
+  "browser": "Firefox 153.0",
+  "desktop": "1120 x 760",
+  "mobile": "390 and 320 px, narrow viewport with mouse",
+  "results": [
+    {
+      "id": "B01",
+      "name": "Primary navigation",
+      "steps": "Open all five navigation views. Use Explore portfolio from Overview.",
+      "expected": "Each action exposes one matching section and title.",
+      "status": "Pass",
+      "observed": "All five views opened and the Overview call to action opened Portfolio."
+    },
+    {
+      "id": "B02",
+      "name": "Account total and timestamp",
+      "steps": "Open Overview. Compare the displayed total, cash and invested assets. Inspect the summary for an as-of date.",
+      "expected": "Components sum to the total and the snapshot has an as-of date.",
+      "status": "Pass",
+      "observed": "Cash and invested assets reconcile to $48,260.50. The fixed snapshot is dated 2026-11-07."
+    },
+    {
+      "id": "B03",
+      "name": "Portfolio return periods",
+      "steps": "Select 6M then 1Y in Portfolio.",
+      "expected": "Each selection updates the return label and amount.",
+      "status": "Pass",
+      "observed": "Illustrative return over 6 months / +$2,514.35 (+5.49%); Illustrative return over 1 year / +$3,126.40 (+6.93%)"
+    },
+    {
+      "id": "B04",
+      "name": "Portfolio trend by period",
+      "steps": "In Portfolio, inspect the content after selecting 1Y.",
+      "expected": "The Portfolio view includes a period-specific trend.",
+      "status": "Pass",
+      "observed": "Three distinct chart series matched the labeled endpoint and table for each period."
+    },
+    {
+      "id": "B05",
+      "name": "Catalog search",
+      "steps": "Search for spaced lowercase crwn, then Delta Growth, then zzzz.",
+      "expected": "Ticker and name match; unmatched query shows an empty state.",
+      "status": "Pass",
+      "observed": "Ticker, name and no-results checks returned the expected content."
+    },
+    {
+      "id": "B06",
+      "name": "Watchlist add and remove",
+      "steps": "Save DLTA twice from Research. Open Watchlist, remove DLTA, then open Overview.",
+      "expected": "Only one DLTA entry is added; removal restores the saved count.",
+      "status": "Pass",
+      "observed": "DLTA appeared once, was removed, and Overview returned to two saved securities."
+    },
+    {
+      "id": "B07",
+      "name": "Watchlist session disclosure",
+      "steps": "Add DLTA, reload, and open Watchlist.",
+      "expected": "Reload resets the session-only watchlist.",
+      "status": "Pass",
+      "observed": "Reload restored the two default saved instruments."
+    },
+    {
+      "id": "B08",
+      "name": "Valid order review",
+      "steps": "Select BRVO, enter quantity 3 and confirm.",
+      "expected": "Total is $613.32 and confirmation states no real order was placed.",
+      "status": "Pass",
+      "observed": "Demo review complete. No real order was placed. You reviewed 3 shares of BRVO with a simulated total of $613.32."
+    },
+    {
+      "id": "B09",
+      "name": "Quantity and buying power guards",
+      "steps": "Select CRWN. Confirm quantities 0, 1.5, 101, and 11.",
+      "expected": "Invalid quantities and the over-budget order show distinct messages.",
+      "status": "Pass",
+      "observed": "Blank, zero, negative, fractional and out-of-range quantities were rejected; 11 CRWN triggered the buying-power warning."
+    },
+    {
+      "id": "B10",
+      "name": "Confirmation freshness",
+      "steps": "Confirm 2 ALFA, then edit quantity to 3 without confirming again.",
+      "expected": "The prior confirmation clears or is marked stale.",
+      "status": "Pass",
+      "observed": "Quantity and security edits both cleared confirmation. The revised totals were $375.00 and $613.32."
+    },
+    {
+      "id": "A01",
+      "name": "Keyboard navigation and focus",
+      "steps": "Reload; Tab through five primary controls, then press Enter on Order review. Tab through the order form.",
+      "expected": "Focus stays visible and all order controls are keyboard reachable.",
+      "status": "Pass",
+      "observed": "Skip link, five navigation buttons, heading focus, and three order controls checked. {\"focus\":[[\"Overview\",\"solid\",\"3px\"],[\"Portfolio\",\"solid\",\"3px\"],[\"Watchlist\",\"solid\",\"3px\"],[\"Research\",\"solid\",\"3px\"],[\"Order review\",\"solid\",\"3px\"]],\"form\":[[\"ticker\",\"solid\",\"3px\"],[\"quantity\",\"solid\",\"3px\"],[\"simulate\",\"solid\",\"3px\"]]}"
+    },
+    {
+      "id": "A02",
+      "name": "Programmatic form labels",
+      "steps": "Find both order controls and the research input by their accessible names.",
+      "expected": "Demo security, Quantity and Search securities each resolve once.",
+      "status": "Pass",
+      "observed": "Found three matching labels through browser locators."
+    },
+    {
+      "id": "A03",
+      "name": "Selected state semantics",
+      "steps": "Open Portfolio and select 6M; inspect selected navigation and timeframe controls.",
+      "expected": "Selected state is exposed through an ARIA attribute.",
+      "status": "Pass",
+      "observed": "Portfolio exposed aria-current=page and 6M exposed aria-pressed=true."
+    },
+    {
+      "id": "A04",
+      "name": "Focus after saving",
+      "steps": "In Research, Tab from DLTA search to Save, then press Enter.",
+      "expected": "Focus stays on the saved row or moves to a named relevant element.",
+      "status": "Pass",
+      "observed": "Focus stayed on the same DLTA button and its pressed state updated."
+    },
+    {
+      "id": "B11",
+      "name": "Watchlist empty state",
+      "steps": "Reload, open Watchlist and remove ALFA and BRVO. Activate Discover demo securities.",
+      "expected": "An empty-state prompt appears and the call to action opens Research.",
+      "status": "Pass",
+      "observed": "Empty state appeared and the discovery button opened Research."
+    },
+    {
+      "id": "B12",
+      "name": "Holdings reconcile",
+      "steps": "Open Portfolio and compare three holding values with the Overview invested total.",
+      "expected": "Holding market values sum to $44,060.50.",
+      "status": "Pass",
+      "observed": "Three holding values sum to $44,060.50."
+    },
+    {
+      "id": "A05",
+      "name": "Skip link and reverse focus",
+      "steps": "Reload, activate the first link with Enter, then Shift+Tab.",
+      "expected": "Skip moves focus to the page heading and reverse traversal reaches primary navigation.",
+      "status": "Pass",
+      "observed": "Skip focused the heading, then Shift+Tab returned to primary navigation."
+    },
+    {
+      "id": "A06",
+      "name": "Focus after removing saved securities",
+      "steps": "Remove ALFA and BRVO using Enter.",
+      "expected": "Focus moves to the next remove control and then the discovery action.",
+      "status": "Pass",
+      "observed": "Focus moved to Remove BRVO and then Discover demo securities."
+    },
+    {
+      "id": "A07",
+      "name": "Axe WCAG A and AA rule scan",
+      "steps": "Inspect axe output on all five visible views.",
+      "expected": "No violations among the selected automated checks.",
+      "status": "Pass",
+      "observed": "No violations reported by the selected automated rules on the five scanned views."
+    },
+    {
+      "id": "A08",
+      "name": "Form error association",
+      "steps": "Submit an empty quantity, then correct it.",
+      "expected": "The input is marked invalid and linked to the error, then both states clear on edit.",
+      "status": "Pass",
+      "observed": "Invalid state and associated feedback cleared after correction."
+    },
+    {
+      "id": "A09",
+      "name": "Sampled Overview gradient contrast",
+      "steps": "Read computed foreground and gradient endpoint colors in Overview. Compare each foreground with the lighter endpoint.",
+      "expected": "Both sampled foregrounds meet 4.5:1 against the lighter gradient endpoint.",
+      "status": "Pass",
+      "observed": "Computed sample ratios were 7.58:1 and 5.27:1 against the lighter gradient endpoint."
+    },
+    {
+      "id": "M01",
+      "name": "Mobile layout and order review",
+      "steps": "At 390 x 844, open all views and check horizontal overflow. Complete a demo order at that viewport.",
+      "expected": "Each view fits the viewport and the order interaction completes.",
+      "status": "Pass",
+      "observed": "Five viewport and document widths: [[390,390],[390,390],[390,390],[390,390],[390,390]]. Demo review complete. No real order was placed. You reviewed 2 shares of ALFA with a simulated total of $250.00."
+    },
+    {
+      "id": "M02",
+      "name": "Narrow navigation and target sizes",
+      "steps": "At 320 px, inspect all navigation controls and open Portfolio.",
+      "expected": "Navigation fits, visible controls are at least 24 px in both dimensions, and no page overflow occurs.",
+      "status": "Pass",
+      "observed": "All five navigation controls fit within 320 px and met the tested size. Portfolio did not overflow."
+    }
+  ],
+  "audits": [
+    {
+      "view": "overview",
+      "version": "4.14.0",
+      "rulesPassed": 33,
+      "incomplete": [
+        "color-contrast"
+      ],
+      "violations": []
+    },
+    {
+      "view": "portfolio",
+      "version": "4.14.0",
+      "rulesPassed": 34,
+      "incomplete": [],
+      "violations": []
+    },
+    {
+      "view": "watchlist",
+      "version": "4.14.0",
+      "rulesPassed": 29,
+      "incomplete": [],
+      "violations": []
+    },
+    {
+      "view": "research",
+      "version": "4.14.0",
+      "rulesPassed": 37,
+      "incomplete": [],
+      "violations": []
+    },
+    {
+      "view": "order",
+      "version": "4.14.0",
+      "rulesPassed": 37,
+      "incomplete": [],
+      "violations": []
+    }
+  ],
+  "errors": []
+}
